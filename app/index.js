@@ -1,5 +1,8 @@
-const customExpress = require('./config/customExpress')
+const express = require('express')
+const routes = require('./routes')
 
-const app = customExpress()
+const app = express()
+
+routes(app)
 
 app.listen(3500)
