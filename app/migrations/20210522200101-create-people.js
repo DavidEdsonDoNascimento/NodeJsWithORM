@@ -11,14 +11,14 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      status: {
-        type: Sequelize.BOOLEAN
-      },
       email: {
         type: Sequelize.STRING
       },
-      role: {
+      roles: {
         type: Sequelize.STRING
+      },
+      status: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
