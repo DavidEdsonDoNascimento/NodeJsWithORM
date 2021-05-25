@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser')
 const peopleRoutes = require('./peopleRoute')
+const moment = require('moment')
 
 module.exports = app => {
     app.use(bodyParser.json())
@@ -7,7 +8,9 @@ module.exports = app => {
     app.use(peopleRoutes)
 
     app.get('/', (req, res) => {
-        return res.json({ success: true })
+        const now = Date(moment().format('YYYY-MM-DD HH:mm:ss'))
+        //const now2 = new Date(now)
+        return res.json({ success: true , hoje: now })
     })
 
 }
