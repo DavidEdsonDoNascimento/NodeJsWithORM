@@ -35,7 +35,6 @@ class PeopleController
     static async insert(req, res)
     {
         const { name, email, roles } = req.body
-        const now = date(moment().format('YYYY-MM-DD HH:mm:ss'))
 
         try{
 
@@ -43,11 +42,9 @@ class PeopleController
                 name: name,
                 email: email,
                 roles: roles,
-                status: 1,
-                createdAt: now,
-                updatedAt: now
+                status: true
             })
-            console.log(now)
+
             return res.status(201).json(result);
 
         } catch(err){
