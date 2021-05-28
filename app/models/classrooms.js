@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Classrooms.init({
-    start_date: DataTypes.DATEONLY
+    start_date: DataTypes.DATEONLY,
+    status: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Classrooms',

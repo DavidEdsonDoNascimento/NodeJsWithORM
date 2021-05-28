@@ -19,7 +19,7 @@ class LevelsController
         try{
 
             const result = await db.Levels.create(req.body)
-            return res.status(200).json(result)
+            return res.status(201).json(result)
         }
         catch(err){
             return res.status(500).json(err.message)
