@@ -86,6 +86,90 @@ class PeopleController
             return res.status(500).json(err.message)
         }
     }
+
+    static async registrationList(req, res)
+    {
+        const { studentId } = req.params
+        
+        try {
+
+            const registrations = await db.Registrations.findAll({
+                where: { student_id: studentId }
+            })
+
+            return res.status(200).json(registrations)
+        }
+        catch(err){
+            return res.status(500).json(err.message)
+        }
+    }
+
+    static async findRegistrationById(req, res)
+    {
+        const { studentId, registrationId } = req.params
+
+        try{
+
+            const registration = await db.Registrations.findAll({
+                where: { 
+                    id: registrationId,
+                    student_id: studentId
+                }
+            })
+
+            return res.status(200).json(registration)
+        }
+        catch(err){
+            return res.status(500).json(err.message)
+        }
+    }
+
+    static async createRegistration(req, res)
+    {
+        const { studentId } = req.params
+        
+        try{
+
+            const registration = await db.Registrations.create({ ...req.body, student_id: studentId })
+
+            return res.status(200).json(registration)
+        }
+        catch(err){
+            return res.status(500).json(err.message)
+        }
+    }
+
+    static async updateRegistration(req, res)
+    {
+        const { studentId, registrationId } = req.params
+        
+        try{
+
+            await db.Registrations.update(req.body, { where: { id: registrationId, student_id: studentId }})
+            
+            const registration = await db.Registrations.findOne({ where: { id: registrationId } })
+            
+            return res.status(200).json(registration)
+        }
+        catch(err){
+            return res.status(500).json(err.message)
+        }
+    }
+
+    static async deleteRegistration(req, res)
+    {
+        const { studentId, registrationId } = req.params
+
+        try{
+
+            await db.Registrations.destroy({ where: { id: registrationId, student_id: studentId } })
+            return res.status(200).json({ message: `Matricula de id ${registrationId} deletada.` })
+        }
+        catch(err){
+            return res.status(500).json(err.message)
+        }
+    }
+
 }
 
 module.exports = PeopleController
